@@ -1,0 +1,79 @@
+/* Bisness.css */
+
+body {
+	font-family: 'Arial', sans-serif;
+	margin: 0;
+	padding: 0;
+	background: linear-gradient(to right, #f9f9f9, #e0e0e0);
+	color: #333;
+	line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	text-align: center;
+	color: #00509e;
+	margin: 10px 0;
+	text-shadow: 1px 1px 2px #ccc;
+	font-size: 30px;
+}
+
+label {
+	font-weight: bold;
+	margin: 10px 0;
+	display: block;
+	color: #00509e;
+}
+
+input,
+select {
+	width: calc(100% - 20px);
+	margin: 10px 0;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+	font-size: 16px;
+}
+
+button {
+	display: block;
+	width: calc(100% - 20px);
+	padding: 10px;
+	margin: 20px auto;
+	background: #00509e;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background 0.3s ease;
+}
+
+button:hover {
+	background: #003f7e;
+}
+
+p {
+	text-align: center;
+	font-size: 18px;
+	color: #333;
+	margin-top: 10px;
+}
+
+#result {
+	font-weight: bold;
+	color: #ff4500;
+}
+
+.container {
+	max-width: 600px;
+	margin: 20px auto;
+	background: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}

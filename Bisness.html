@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>KopitPlan</title>
+	<link rel="stylesheet" href="Bisness.css">
+</head>
+
+<body>
+	<h1> Текущая Сумма</h1>
+	<label for="currentSum">Введите текущую сумму:</label>
+	<input type="text" id="currentSum" maxlength="20" placeholder="Введите сумму" />
+
+	<h2> Прибыль за каждый месяц</h2>
+	<label for="monthlyProfit">Введите прибыль за месяц:</label>
+	<input type="text" id="monthlyProfit" maxlength="20" placeholder="Введите прибыль" />
+
+	<h3> Расходы за каждый месяц</h3>
+	<label for="monthlyExpenses">Введите расходы за месяц:</label>
+	<input type="text" id="monthlyExpenses" maxlength="20" placeholder="Введите расходы" />
+
+	<h4> Ваш доход за год:</h4>
+	<p id="yearlyProfit">Введите данные, чтобы увидеть результат</p>
+
+	<h5> Простой калькулятор</h5>
+	<label for="num1">Введите первое число:</label>
+	<input type="text" id="num1" placeholder="Первое число" /><br>
+
+	<label for="operation">Выберите операцию:</label>
+	<select id="operation">
+		<option value="add">+</option>
+		<option value="subtract">-</option>
+		<option value="multiply">*</option>
+		<option value="divide">/</option>
+	</select><br>
+
+	<label for="num2">Введите второе число:</label>
+	<input type="text" id="num2" placeholder="Второе число" /><br>
+
+	<button onclick="calculate()">Рассчитать</button>
+	<p id="result">Результат появится здесь</p>
+
+	<script>
+		// Расчет дохода за год
+		const currentSumInput = document.getElementById('currentSum');
+		const monthlyProfitInput = document.getElementById('monthlyProfit');
+		const monthlyExpensesInput = document.getElementById('monthlyExpenses');
+		const yearlyProfitOutput = document.getElementById('yearlyProfit');
+
+		function calculateYearlyProfit() {
+			// Получаем значения
+			const currentSum = parseFloat(currentSumInput.value.replace(/[^0-9.]/g, '')) || 0;
+			const monthlyProfit = parseFloat(monthlyProfitInput.value.replace(/[^0-9.]/g, '')) || 0;
+			const monthlyExpenses = parseFloat(monthlyExpensesInput.value.replace(/[^0-9.]/g, '')) || 0;
+
+			// Рассчитываем доход за год
+			const yearlyProfit = currentSum + (monthlyProfit - monthlyExpenses) * 12;
+
+			// Обновляем текст результата
+			yearlyProfitOutput.textContent = `Ваш доход за год: ${yearlyProfit.toLocaleString()} рублей`;
+		}
+
+		// Добавляем обработчики событий для обновления дохода
+		currentSumInput.addEventListener('input', calculateYearlyProfit);
+		monthlyProfitInput.addEventListener('input', calculateYearlyProfit);
+		monthlyExpensesInput.addEventListener('input', calculateYearlyProfit);
+
+		// Калькулятор
+		function calculate() {
+			const num1 = parseFloat(document.getElementById('num1').value);
+			const num2 = parseFloat(document.getElementById('num2').value);
+			const operation = document.getElementById('operation').value;
+			const resultField = document.getElementById('result');
+
+			if (isNaN(num1) || isNaN(num2)) {
+				resultField.textContent = "Пожалуйста, введите корректные числа.";
+				return;
+			}
+
+			let result;
+			switch (operation) {
+				case "add":
+					result = num1 + num2;
+					break;
+				case "subtract":
+					result = num1 - num2;
+					break;
+				case "multiply":
+					result = num1 * num2;
+					break;
+				case "divide":
+					if (num2 === 0) {
+						resultField.textContent = "Ошибка: деление на ноль невозможно.";
+						return;
+					}
+					result = num1 / num2;
+					break;
+				default:
+					resultField.textContent = "Ошибка: неизвестная операция.";
+					return;
+			}
+
+			resultField.textContent = `Результат: ${result}`;
+		}
+	</script>
+</body>
+
+</html>
